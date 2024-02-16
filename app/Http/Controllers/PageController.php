@@ -13,7 +13,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $DcComics = DcComic::all();
+        return view('dccomics.index', compact('DcComics'));
     }
 
     /**
@@ -45,7 +46,8 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+        $DcComic = DcComic::find($id);
+        return view('dccomics.show', compact ('dccomic'));
     }
 
     /**

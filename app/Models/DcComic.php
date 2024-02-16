@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DcComic extends Model
+class Dccomic extends Model
 {
     use HasFactory;
 }
