@@ -17,7 +17,7 @@
 
 <body>
 
-    <main>
+    <main class="mt-3">
         @yield('content')
     </main>
 
