@@ -70,7 +70,8 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dccomic = DcComic::find($id);
+        return view('dccomics.edit', compact ('dccomic'));
     }
 
     /**
@@ -82,7 +83,20 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form_data = $request->all();
+        $dccomic = DcComic::find($id);
+        $dccomic->title = $form_data['title'];
+        $dccomic->thumb = $form_data['thumb'];
+        $dccomic->price = $form_data['price'];
+        $dccomic->description = $form_data['description'];
+        $dccomic->series = $form_data['series'];
+        $dccomic->writers = $form_data['writers'];
+        $dccomic->artists = $form_data['artists'];
+        $dccomic->sale_date = $form_data['sale_date'];
+        $dccomic->type = $form_data['type'];
+        $dccomic->update();
+
+        return redirect()->route('dccomics.show', ['dccomic'=> $dccomic]);
     }
 
     /**

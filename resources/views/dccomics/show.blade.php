@@ -14,11 +14,14 @@
         <div class="col-3">
             <img src="{{Vite::asset('resources/img/adv.jpg')}}" alt="ad">
         </div>
-        <div class="col-10">
+        <div class="col-7">
             <h5>Specs</h5>
             <p>Series: {{$dccomic['series']}}</p>
             <p>U.S Price: {{$dccomic['price']}}</p>
             <p>On Sale Date: {{$dccomic['sale_date']}}</p>
+        </div>
+        <div class="col-4 pt-5">
+            <a href="{{route('dccomics.edit', ['dccomic' => $dccomic->id])}}" class="btn btn-warning">Modifica fumetto</a>
         </div>
     </div>
 </div>
