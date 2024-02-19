@@ -9,3 +9,9 @@ Iniziate a definire le prime operazioni CRUD con le relative view:
 - index()
 - show()
 creare il seeder per la tabella comics utilizzando il file in allegato.
+
+DAY 2
+Ciao ragazzi,
+oggi lavorate sulla stessa repo di ieri e svolgere le operazioni CRUD per la creazione di un nuovo record e la modifica (create, store, edit, update).
+Bonus:
+Validare i campi inseriti con il metodo validate come visto a lezione (non fa niente che il testo dei messaggi sia in inglese)
