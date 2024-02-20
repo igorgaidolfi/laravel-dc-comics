@@ -83,6 +83,19 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $request->validate([
+        //     'title' => 'required|max:100',
+        //     'description' => 'required|min:5',
+        //     'thumb' => 'min:5',
+        //     'price' => 'required|max:10',
+        //     'series' => 'required|max:100',
+        //     'date' => 'required|date',
+        //     'type' => 'required|max:20',
+        //     'writers' => 'required|min:5',
+        //     'artists' => 'required',
+            
+        // ]);
+
         $form_data = $request->all();
         $dccomic = DcComic::find($id);
         $dccomic->title = $form_data['title'];
@@ -107,6 +120,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dccomic = DcComic::find($id);
+        $dccomic->delete();
+        return redirect()->route('dccomics.index');
     }
 }

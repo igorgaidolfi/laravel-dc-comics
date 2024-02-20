@@ -20,8 +20,20 @@
             <p>U.S Price: {{$dccomic['price']}}</p>
             <p>On Sale Date: {{$dccomic['sale_date']}}</p>
         </div>
-        <div class="col-4 pt-5">
-            <a href="{{route('dccomics.edit', ['dccomic' => $dccomic->id])}}" class="btn btn-warning">Modifica fumetto</a>
+        <div class="col-4 pt-5 d-flex">
+            <div>
+                <a href="{{route('dccomics.edit', ['dccomic' => $dccomic->id])}}" class="btn btn-warning">Modifica fumetto</a>
+            </div>
+            <form action="{{route('dccomics.destroy', ['dccomic' => $dccomic->id])}}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger ms-2">Elimina fumetto</button>
+            </form>
+            
+            
+
+            
+
         </div>
     </div>
 </div>
