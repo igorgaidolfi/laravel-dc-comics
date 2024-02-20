@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">Aggiungi un nuovo fumetto</div>
-                {{-- TENTATIVO BONUS DAY 2 
+                {{-- TENTATIVO BONUS DAY 2  --}}
                 @if($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -14,7 +14,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif --}}
+                @endif
                 <form action="{{route('dccomics.store')}}" method="post">
                     @csrf
                     <div class="form-group mb-3">

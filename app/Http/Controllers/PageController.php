@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DcComic;
+use Illuminate\Support\Facades\Validator;
 class PageController extends Controller
 {
     /**
@@ -35,7 +36,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $form_data = $request->all();
+        $form_data = $this->validation($request->all());
         $comic = new DcComic();
         $comic->title = $form_data['title'];
         $comic->thumb = $form_data['thumb'];
@@ -92,11 +93,11 @@ class PageController extends Controller
         //     'date' => 'required|date',
         //     'type' => 'required|max:20',
         //     'writers' => 'required|min:5',
-        //     'artists' => 'required',
+        //     'artists' => 'required'
             
         // ]);
 
-        $form_data = $request->all();
+        $form_data = $this->validation($request->all());
         $dccomic = DcComic::find($id);
         $dccomic->title = $form_data['title'];
         $dccomic->thumb = $form_data['thumb'];
@@ -123,5 +124,43 @@ class PageController extends Controller
         $dccomic = DcComic::find($id);
         $dccomic->delete();
         return redirect()->route('dccomics.index');
+    }
+
+    private function validation($data)
+    {
+        $validator = Validator::make(
+            $data, 
+            [
+            'title' => 'required|max:100',
+            'description' => 'required|min:5',
+            'thumb' => 'min:5',
+            'price' => 'required|max:10',
+            'series' => 'required|max:100',
+            'sale_date' => 'required|date',
+            'type' => 'required|max:20',
+            'writers' => 'required|min:5',
+            'artists' => 'required'
+            ],
+            [
+                'title.required' => 'Il titolo e\' obbligatorio',
+                'title.max' => 'Il titolo puo\' contenere al massimo 100 caratteri',
+                'description.required' => 'La descrizione e\' obbligatoria',
+                'description.min' => 'La descrizione deve contenere minimo 5 caratteri',
+                'thumb.min' => 'Il link deve contenere minimo 5 caratteri',
+                'price.required' => 'Il prezzo e\' obbligatorio',
+                'price.max' => 'Il prezzo puo\' contenere al massimo 10 caratteri',
+                'series.required' => 'La serie e\' obbligatoria',
+                'series.max' => 'La serie puo\' contenere al massimo 100 caratteri',
+                'sale_date.required' => 'La data e\' obbligatoria',
+                'sale_date.date' => 'La data e\' da inserire nel formato AAAA-mm-GG',
+                'type.required' => 'Il tipo e\' obbligatorio',
+                'type.max' => 'Il tipo puo\' contenere al massimo 20 caratteri',
+                'artists.required' => 'Un fumettista e\' obbligatorio',
+                'writers.required' => 'Un autore e\' obbligatorio',
+                'writers.min' => 'L\'autore deve contenere minimo 5 caratteri',
+            ]
+        )->validate();
+        
+        return $validator;
     }
 }

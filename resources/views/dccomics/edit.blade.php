@@ -4,7 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-center">Aggiungi un nuovo fumetto</div>
+                <div class="text-center">Modifica fumetto</div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{route('dccomics.update', $dccomic->id)}}" method="post">
                     @csrf
                     @method('PUT')
@@ -52,7 +61,7 @@
                             value="{{old('sale_date') ?? $dccomic->sale_date}}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="writers" class="form-label">Disegni</label>
+                        <label for="writers" class="form-label">Autori</label>
                         <input type="text" class="form-control" id="writers" name="writers" placeholder="Scrittori"
                             value="{{old('writers') ?? $dccomic->writers}}">
                     </div>
